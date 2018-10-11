@@ -120,17 +120,25 @@ class App extends Component {
               <div class="row">
                 <div class="col-12 col-md-7 mini-padding">
                   <div class="card">
-                    <div class="card-body">silver</div>
+                    <div class="card-body">
+                      <h1>Gold</h1>
+                    </div>
                   </div>
                 </div>
                 <div class="col-12 col-md-5 mini-padding">
-                  <div class="card">
-                    <div class="card-body">search</div>
+                  <div class="card searching">
+                    <div class="card-body">
+                      <span class="searching">Search over 10.000 assets</span>
+                    </div>
                   </div>
                 </div>
                 <div class="col-12 mini-padding">
                   <div class="card">
-                    <div class="card-body">buttons</div>
+                    <div class="card-body">
+                      <span class="btn controller float-right">
+                        <i class="fa fa-undo" />
+                      </span>
+                    </div>
                   </div>
                 </div>
                 <div class="col-12 mini-padding">
@@ -165,7 +173,13 @@ class App extends Component {
               <div class="row">
                 <div class="col-12 mini-padding">
                   <div class="card">
-                    <div class="card-body">date picker</div>
+                    <div class="card-body">
+                      <div class="row justify-content-center">
+                        <span class="btn btn-info pattern-filter">10 Dec</span>
+                        <span class="date-separator">-</span>
+                        <span class="btn btn-info pattern-filter">3 Mar</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="col-12 mini-padding">
