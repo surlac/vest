@@ -1,0 +1,28 @@
+.container-fluid {
+  padding-top: 0.75rem;
+}
+.card {
+  margin-bottom: 0.75rem;
+  border: 0;
+  background-color: #f5f8fa;
+  border-radius: 0.25rem;
+  background-clip: border-box;
+}
+.card-body {
+  padding: 0.75rem;
+  flex: 1 1 auto;
+}
+.mini-padding {
+  padding-right: 0.375rem;
+  padding-left: 0.375rem;
+}
+
+.navbar-brand {
+  width: 154px;
+  height: 40px;
+  font-size: 0;
+  background: url(logo.svg) 50% no-repeat;
+  background-size: auto auto;
+  background-size: contain;
+  margin-left: 0.1875rem;
+}
