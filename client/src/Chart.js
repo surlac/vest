@@ -19,7 +19,20 @@ class Chart extends Component {
   render() {
     return (
       <div className="chart">
-        <Line data={this.state.chartData} options={{}} />
+        <Line
+          data={this.state.chartData}
+          options={{
+            title: {
+              display: false,
+              text: "Largest Cities In " + this.props.location,
+              fontSize: 25
+            },
+            legend: {
+              display: false,
+              position: this.props.legendPosition
+            }
+          }}
+        />
       </div>
     );
   }
