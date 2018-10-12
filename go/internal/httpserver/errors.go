@@ -60,15 +60,15 @@ func (h headerError) headers() map[string]struct{} { return h.h }
 
 type msgError struct {
 	httpError
-	msg string
+	m string
 }
 
 func (e msgError) Error() string {
-	return fmt.Sprintf("%v, '%v'", e.httpError.Error(), e.msg)
+	return fmt.Sprintf("%v, '%v'", e.httpError.Error(), e.m)
 }
 
-func (e msgError) message() string {
-	return e.msg
+func (e msgError) msg() string {
+	return e.m
 }
 
 func makeKeys(vals ...string) map[string]struct{} {
