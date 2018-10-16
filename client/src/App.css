@@ -24,9 +24,10 @@
 }
 
 .searching {
-  color: rgba(50, 60, 70, 0.75) !important;
-  font-size: 24px;
+  color: rgba(50, 60, 70, 0.75);
+  font-size: 18px;
   line-height: 34px;
+  font-weight: 700;
 }
 
 .mini-padding {
@@ -42,6 +43,10 @@
   background-size: auto auto;
   background-size: contain;
   margin-left: 0.1875rem;
+}
+
+.nav-link {
+  font-size: 14px;
 }
 
 .pattern-filter {

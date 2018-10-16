@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import "bootstrap/dist/css/bootstrap.css";
-import "font-awesome/css/font-awesome.css";
 import "./App.css";
 import Header from "./Header";
 import Cumulative from "./Cumulative";
