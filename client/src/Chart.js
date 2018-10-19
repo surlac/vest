@@ -26,7 +26,8 @@ class Chart extends Component {
                 data: this.state.chartData.chart.values,
                 backgroundColor: "#c6e8ef",
                 borderWidth: 2,
-                borderColor: "#0cabc2"
+                borderColor: "#0cabc2",
+                pointRadius: 0
               }
             ]
           }}
