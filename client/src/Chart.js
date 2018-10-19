@@ -10,28 +10,27 @@ class Chart extends Component {
   }
 
   static defaultProps = {
-    displayTitle: true,
-    displayLegend: true,
-    legendPosition: "right",
-    location: "City"
+    displayTitle: false,
+    displayLegend: false
   };
 
   render() {
     return (
       <div className="chart">
         <Line
-          data={this.state.chartData}
-          options={{
-            title: {
-              display: false,
-              text: "Largest Cities In " + this.props.location,
-              fontSize: 25
-            },
-            legend: {
-              display: false,
-              position: this.props.legendPosition
-            }
+          data={{
+            labels: this.state.chartData.chart.labels,
+            datasets: [
+              {
+                label: "price",
+                data: this.state.chartData.chart.values,
+                backgroundColor: "#c6e8ef",
+                borderWidth: 2,
+                borderColor: "#0cabc2"
+              }
+            ]
           }}
+          options={{ legend: { display: false } }}
         />
       </div>
     );
