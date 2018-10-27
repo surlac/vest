@@ -13,6 +13,8 @@ import (
 type DatasetCode string
 
 const (
+	dateFormat = "2006-01-02"
+
 	Gold DatasetCode = "WGC"
 )
 
@@ -34,7 +36,7 @@ type APIer interface {
 }
 
 type API struct {
-	DatasetService dataset.QuandlService
+	DatasetService dataset.CachingServicer
 }
 
 type Chart struct {
@@ -57,7 +59,7 @@ func (a *API) Chart(ctx context.Context, code DatasetCode, MinTime, MaxTime time
 		return Chart{}, errutil.Wrap(err)
 	}
 
-	cloudChart, err := a.DatasetService.Get(ctx, dc, MinTime, MaxTime)
+	cloudChart, err := a.DatasetService.Get(ctx, dc)
 	switch err {
 	case nil:
 	case dataset.ErrNotFound:
@@ -67,9 +69,12 @@ func (a *API) Chart(ctx context.Context, code DatasetCode, MinTime, MaxTime time
 	}
 
 	c := Chart{}
-	for k, v := range cloudChart.Data {
-		c.Labels = append(c.Labels, k)
-		c.Values = append(c.Values, v)
+	for _, v := range cloudChart.Data {
+		if v.Time.Before(MinTime) || v.Time.After(MaxTime) {
+			continue
+		}
+		c.Labels = append(c.Labels, v.Time.Format(dateFormat))
+		c.Values = append(c.Values, v.Value)
 	}
 	c.Start = cloudChart.Start
 	c.End = cloudChart.End

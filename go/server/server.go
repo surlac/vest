@@ -79,10 +79,10 @@ func start() (rerr error) {
 		}
 	}
 
-	ds := dataset.New()
+	ds := dataset.NewCachingService(dataset.New())
 
 	apier := &api.API{
-		DatasetService: *ds,
+		DatasetService: ds,
 	}
 
 	srv := &httpserver.HTTPServer{
