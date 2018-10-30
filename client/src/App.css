@@ -23,6 +23,14 @@
   font-weight: 700;
 }
 
+.card h4 {
+  font-size: 15px;
+  padding: 0;
+  text-align: center;
+  color: #969ba0;
+  font-weight: 700;
+}
+
 .searching {
   color: rgba(50, 60, 70, 0.75);
   font-size: 18px;

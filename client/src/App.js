@@ -17,6 +17,20 @@ class App extends Component {
     this.state = {
       chartData: getInitialPriceData()
     };
+
+    this.eventSource = new EventSource("http://sse");
+  }
+
+  componentDidMount() {
+    this.eventSource.onmessage = event => {
+      var price = JSON.parse(event.data);
+      // console.log(price); //Array of 365 random numbers
+      var someProperty = { ...this.state.chartData };
+
+      someProperty.chart.values = price;
+
+      this.setState({ someProperty });
+    };
   }
 
   render() {
@@ -43,7 +57,7 @@ class App extends Component {
                 <Table />
               </div>
             </div>
-            <Sidebar />
+            <Sidebar chartData={this.state.chartData} />
           </div>
         </div>
       </div>

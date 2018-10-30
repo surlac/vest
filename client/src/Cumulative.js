@@ -4,7 +4,9 @@ function Cumulative() {
   return (
     <div class="col-12 col-lg-6 mini-padding">
       <div class="card">
-        <div class="card-body">cumulative</div>
+        <div class="card-body">
+          <h4>cumulative</h4>
+        </div>
       </div>
     </div>
   );
