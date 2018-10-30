@@ -61,6 +61,7 @@ type Stats struct {
 	StatsData
 	PatternChartData ChartData
 	EquityChartData  ChartData
+	Patterns
 }
 
 type StatsData struct {
@@ -87,6 +88,23 @@ type StatsData struct {
 type ChartData struct {
 	Labels []string
 	Values []float64
+}
+
+type Patterns struct {
+	Data []Pattern
+}
+
+type Pattern struct {
+	TradingDays  int
+	CalendarDays int
+	StartDate    time.Time
+	EndDate      time.Time
+	StartPrice   float64
+	EndPrice     float64
+	MaxDrop      float64
+	MaxRise      float64
+	ProfitAbs    float64
+	ProfitRel    float64
 }
 
 func (a *API) Chart(ctx context.Context, code DatasetCode, MinTime, MaxTime time.Time) (Chart, error) {
@@ -133,10 +151,12 @@ func (a *API) Stats(ctx context.Context, code DatasetCode, rangeStart, rangeEnd,
 	}
 
 	pcd, ecd := ChartData{}, ChartData{}
+	patterns := Patterns{}
 	for y := rangeStart.Year(); y <= rangeEnd.Year(); y++ {
 		pcd.Labels = append(pcd.Labels, fmt.Sprint(y))
 		pcd.Values = append(pcd.Values, toFixed(rand.Float64()*10-5, 2))
 
+		// equity
 		ps := time.Date(y, periodStart.Month(), periodStart.Day(), 0, 0, 0, 0, time.UTC)
 		pe := time.Date(y, periodEnd.Month(), periodEnd.Day(), 0, 0, 0, 0, time.UTC)
 		for d := ps; d.Before(pe) || d.Equal(pe); d = d.Add(24 * time.Hour) {
@@ -145,6 +165,21 @@ func (a *API) Stats(ctx context.Context, code DatasetCode, rangeStart, rangeEnd,
 				ecd.Values = append(ecd.Values, toFixed(rand.Float64()*10+95, 2))
 			}
 		}
+
+		// patterns
+		pattern := Pattern{
+			rand.Intn(365),
+			rand.Intn(365),
+			ps,
+			pe,
+			toFixed(rand.Float64()*10+95, 2),
+			toFixed(rand.Float64()*10+95, 2),
+			toFixed(-rand.Float64()*10, 2),
+			toFixed(rand.Float64()*10, 2),
+			toFixed(rand.Float64()*50-25, 2),
+			toFixed(rand.Float64()*10-5, 2),
+		}
+		patterns.Data = append(patterns.Data, pattern)
 	}
 
 	s := Stats{
@@ -170,6 +205,7 @@ func (a *API) Stats(ctx context.Context, code DatasetCode, rangeStart, rangeEnd,
 		},
 		pcd,
 		ecd,
+		patterns,
 	}
 
 	return s, nil

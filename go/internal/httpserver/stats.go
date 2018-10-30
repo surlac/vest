@@ -13,6 +13,7 @@ type stats struct {
 	StatsData        statsData `json:"stats,omitempty"`
 	PatternChartData chartData `json:"patternChartData,omitempty"`
 	EquityChartData  chartData `json:"equityChartData,omitempty"`
+	Patterns         []Pattern `json:"patterns,omitempty"`
 }
 
 type statsData struct {
@@ -39,6 +40,19 @@ type statsData struct {
 type chartData struct {
 	Labels []string  `json:"labels,omitempty"`
 	Values []float64 `json:"values,omitempty"`
+}
+
+type Pattern struct {
+	TradingDays  int     `json:"trading_days, omitempty"`
+	CalendarDays int     `json:"calendar_days, omitempty"`
+	StartDate    string  `json:"start_date, omitempty"`
+	EndDate      string  `json:"end_date, omitempty"`
+	StartPrice   float64 `json:"start_price, omitempty"`
+	EndPrice     float64 `json:"end_price, omitempty"`
+	MaxDrop      float64 `json:"max_drop, omitempty"`
+	MaxRise      float64 `json:"max_rise, omitempty"`
+	ProfitAbs    float64 `json:"profit_abs, omitempty"`
+	ProfitRel    float64 `json:"profit_rel, omitempty"`
 }
 
 const (
@@ -151,6 +165,10 @@ func (h *statsGetHandler) serve(w http.ResponseWriter, r *http.Request) error {
 }
 
 func convertStats(a api.Stats) stats {
+	var pd []Pattern
+	for _, p := range a.Patterns.Data {
+		pd = append(pd, convertPattern(p))
+	}
 	return stats{
 		statsData{
 			a.AnnualizedRest,
@@ -173,12 +191,28 @@ func convertStats(a api.Stats) stats {
 			a.WinnerProfit,
 		},
 		chartData{
-			Labels: a.PatternChartData.Labels,
-			Values: a.PatternChartData.Values,
+			a.PatternChartData.Labels,
+			a.PatternChartData.Values,
 		},
 		chartData{
-			Labels: a.EquityChartData.Labels,
-			Values: a.EquityChartData.Values,
+			a.EquityChartData.Labels,
+			a.EquityChartData.Values,
 		},
+		pd,
+	}
+}
+
+func convertPattern(a api.Pattern) Pattern {
+	return Pattern{
+		a.TradingDays,
+		a.CalendarDays,
+		a.StartDate.Format(dateFormat),
+		a.EndDate.Format(dateFormat),
+		a.StartPrice,
+		a.EndPrice,
+		a.MaxDrop,
+		a.MaxRise,
+		a.ProfitAbs,
+		a.ProfitRel,
 	}
 }
