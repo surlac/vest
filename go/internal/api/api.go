@@ -2,6 +2,7 @@ package api
 
 import (
 	"context"
+	"fmt"
 	"math"
 	"math/rand"
 	"time"
@@ -57,6 +58,12 @@ type Metrics struct {
 }
 
 type Stats struct {
+	StatsData
+	PatternChartData ChartData
+	EquityChartData  ChartData
+}
+
+type StatsData struct {
 	AnnualizedRest    float64
 	AnnualizedReturn  float64
 	AverageProfit     float64
@@ -75,6 +82,11 @@ type Stats struct {
 	TradingDays       int
 	WinnerCount       int
 	WinnerProfit      float64
+}
+
+type ChartData struct {
+	Labels []string
+	Values []float64
 }
 
 func (a *API) Chart(ctx context.Context, code DatasetCode, MinTime, MaxTime time.Time) (Chart, error) {
@@ -120,25 +132,44 @@ func (a *API) Stats(ctx context.Context, code DatasetCode, rangeStart, rangeEnd,
 		return float64(round(num*output)) / output
 	}
 
+	pcd, ecd := ChartData{}, ChartData{}
+	for y := rangeStart.Year(); y <= rangeEnd.Year(); y++ {
+		pcd.Labels = append(pcd.Labels, fmt.Sprint(y))
+		pcd.Values = append(pcd.Values, toFixed(rand.Float64()*10-5, 2))
+
+		ps := time.Date(y, periodStart.Month(), periodStart.Day(), 0, 0, 0, 0, time.UTC)
+		pe := time.Date(y, periodEnd.Month(), periodEnd.Day(), 0, 0, 0, 0, time.UTC)
+		for d := ps; d.Before(pe) || d.Equal(pe); d = d.Add(24 * time.Hour) {
+			if d.Weekday() == time.Monday {
+				ecd.Labels = append(ecd.Labels, d.Format(dateFormat))
+				ecd.Values = append(ecd.Values, toFixed(rand.Float64()*10+95, 2))
+			}
+		}
+	}
+
 	s := Stats{
-		toFixed(rand.Float64(), 2),
-		toFixed(rand.Float64()*20-10, 2),
-		toFixed(rand.Float64()*20-10, 2),
-		toFixed(rand.Float64(), 2),
-		rand.Intn(365),
-		rand.Intn(10) - 5,
-		rand.Intn(10),
-		toFixed(rand.Float64()*10-5, 2),
-		toFixed(rand.Float64()*10-5, 2),
-		toFixed(rand.Float64()*10-5, 2),
-		toFixed(rand.Float64()-0.5, 2),
-		rand.Intn(10),
-		toFixed(rand.Float64()*100, 2),
-		toFixed(rand.Float64()*5, 2),
-		toFixed(rand.Float64()*200-100, 2),
-		rand.Intn(365),
-		rand.Intn(10),
-		toFixed(rand.Float64()*10-5, 2),
+		StatsData{
+			toFixed(rand.Float64(), 2),
+			toFixed(rand.Float64()*20-10, 2),
+			toFixed(rand.Float64()*20-10, 2),
+			toFixed(rand.Float64(), 2),
+			rand.Intn(365),
+			rand.Intn(10) - 5,
+			rand.Intn(10),
+			toFixed(rand.Float64()*10-5, 2),
+			toFixed(rand.Float64()*10-5, 2),
+			toFixed(rand.Float64()*10-5, 2),
+			toFixed(rand.Float64()-0.5, 2),
+			rand.Intn(10),
+			toFixed(rand.Float64()*100, 2),
+			toFixed(rand.Float64()*5, 2),
+			toFixed(rand.Float64()*200-100, 2),
+			rand.Intn(365),
+			rand.Intn(10),
+			toFixed(rand.Float64()*10-5, 2),
+		},
+		pcd,
+		ecd,
 	}
 
 	return s, nil

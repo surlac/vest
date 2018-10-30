@@ -10,7 +10,9 @@ import (
 )
 
 type stats struct {
-	statsData `json:"stats,omitempty"`
+	StatsData        statsData `json:"stats,omitempty"`
+	PatternChartData chartData `json:"patternChartData,omitempty"`
+	EquityChartData  chartData `json:"equityChartData,omitempty"`
 }
 
 type statsData struct {
@@ -32,6 +34,11 @@ type statsData struct {
 	TradingDays       int     `json:"trading_days, omitempty"`
 	WinnerCount       int     `json:"winner_count, omitempty"`
 	WinnerProfit      float64 `json:"winner_profit, omitempty"`
+}
+
+type chartData struct {
+	Labels []string  `json:"labels,omitempty"`
+	Values []float64 `json:"values,omitempty"`
 }
 
 const (
@@ -91,6 +98,10 @@ func (h *statsGetHandler) serve(w http.ResponseWriter, r *http.Request) error {
 		return msgError{errBadTime, fmt.Sprintf("'%v' was not in 'yyyy-mm-dd' format", statsRangeEndParam)}
 	}
 
+	if !rs.Before(re) {
+		return msgError{errBadTime, fmt.Sprintf("'%v' must be before '%v'", statsRangeStartParam, statsRangeEndParam)}
+	}
+
 	// period start/end
 	psString, ok := contextParam(ctx, periodStartParam)
 	if !ok {
@@ -108,6 +119,10 @@ func (h *statsGetHandler) serve(w http.ResponseWriter, r *http.Request) error {
 	pe, err := time.Parse(dateFormat, peString)
 	if err != nil {
 		return msgError{errBadTime, fmt.Sprintf("'%v' was not in 'yyyy-mm-dd' format", periodEndParam)}
+	}
+
+	if !ps.Before(pe) {
+		return msgError{errBadTime, fmt.Sprintf("'%v' must be before '%v'", periodStartParam, periodEndParam)}
 	}
 
 	apiS, err := h.api.Stats(ctx, dc, rs, re, ps, pe)
@@ -156,6 +171,14 @@ func convertStats(a api.Stats) stats {
 			a.TradingDays,
 			a.WinnerCount,
 			a.WinnerProfit,
+		},
+		chartData{
+			Labels: a.PatternChartData.Labels,
+			Values: a.PatternChartData.Values,
+		},
+		chartData{
+			Labels: a.EquityChartData.Labels,
+			Values: a.EquityChartData.Values,
 		},
 	}
 }
