@@ -240,11 +240,13 @@ func (b routeBuilder) build() http.Handler {
 
 	chartsGet := newChartsGetHandler(b.api)
 	statsGet := newStatsGetHandler(b.api)
+	navigationGet := newNavigationGetHandler(b.api)
 
 	routes := func() routePaths {
 		return routePaths{
-			"v1/charts": {http.MethodHead: chartsGet, http.MethodGet: chartsGet},
-			"v1/stats":  {http.MethodHead: statsGet, http.MethodGet: statsGet},
+			"v1/charts":     {http.MethodHead: chartsGet, http.MethodGet: chartsGet},
+			"v1/stats":      {http.MethodHead: statsGet, http.MethodGet: statsGet},
+			"v1/navigation": {http.MethodHead: navigationGet, http.MethodGet: navigationGet},
 		}
 	}
 

@@ -37,6 +37,7 @@ func (c DatasetCode) toDatasetCode() (dataset.Code, error) {
 type APIer interface {
 	Chart(_ context.Context, _ DatasetCode, MinTime, MaxTime time.Time) (Chart, error)
 	Stats(_ context.Context, _ DatasetCode, rangeStart, rangeEnd, periodStart, periodEnd time.Time) (Stats, error)
+	Navigation(context.Context) (Navigation, error)
 }
 
 type API struct {
@@ -105,6 +106,17 @@ type Pattern struct {
 	MaxRise      float64
 	ProfitAbs    float64
 	ProfitRel    float64
+}
+
+type Navigation struct {
+	Commodities []Asset
+}
+
+type Asset struct {
+	ID        int
+	Slug      string
+	Name      string
+	IsVisible bool
 }
 
 func (a *API) Chart(ctx context.Context, code DatasetCode, MinTime, MaxTime time.Time) (Chart, error) {
@@ -209,4 +221,12 @@ func (a *API) Stats(ctx context.Context, code DatasetCode, rangeStart, rangeEnd,
 	}
 
 	return s, nil
+}
+
+func (a *API) Navigation(ctx context.Context) (Navigation, error) {
+	return Navigation{
+		[]Asset{
+			{8, "gc", "Gold", true},
+		},
+	}, nil
 }
