@@ -29,13 +29,13 @@ class Sidebar extends Component {
               <div class="card-body">
                 <Doughnut
                   data={{
-                    labels: this.state.chartData.chart.labels,
+                    labels: this.state.chartData.equityChartData.labels,
                     datasets: [
                       {
                         label: "price",
-                        data: [
-                          this.state.chartData.chart.values[0],
-                          this.state.chartData.chart.values[364]
+                        data: [ 3,17
+                          //this.state.chartData.chart.values[0],
+                          //this.state.chartData.chart.values[2]
                         ],
                         backgroundColor: ["#C5CACD", "#0cabc2"],
                         borderWidth: 2,

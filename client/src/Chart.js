@@ -19,11 +19,11 @@ class Chart extends Component {
       <div className="chart">
         <Line
           data={{
-            labels: this.state.chartData.chart.labels,
+            labels: this.state.chartData.equityChartData.labels,
             datasets: [
               {
                 label: "price",
-                data: this.state.chartData.chart.values,
+                data: this.state.chartData.equityChartData.values,
                 backgroundColor: "#c6e8ef",
                 borderWidth: 2,
                 borderColor: "#0cabc2",

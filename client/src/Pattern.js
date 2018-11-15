@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 
 class Pattern extends Component {
   constructor(props) {
@@ -15,13 +15,13 @@ class Pattern extends Component {
         <div class="card">
           <div class="card-body">
             <h4>patterns</h4>
-            <Line
+            <Bar
               data={{
-                labels: this.state.chartData.chart.labels,
+                labels: this.state.chartData.equityChartData.labels,
                 datasets: [
                   {
                     label: "price",
-                    data: this.state.chartData.chart.values,
+                    data: this.state.chartData.equityChartData.values,
                     backgroundColor: "#c6e8ef",
                     borderWidth: 2,
                     borderColor: "#0cabc2",

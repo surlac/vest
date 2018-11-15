@@ -17,12 +17,12 @@ class Cumulative extends Component {
             <h4>cumulative</h4>
             <Line
               data={{
-                labels: this.state.chartData.chart.labels,
+                labels: this.state.chartData.equityChartData.labels,
                 datasets: [
                   {
                     label: "price",
-                    data: this.state.chartData.chart.values,
-                    backgroundColor: "#c6e8ef",
+                    data: this.state.chartData.equityChartData.values,
+                    
                     borderWidth: 2,
                     borderColor: "#0cabc2",
                     pointRadius: 0

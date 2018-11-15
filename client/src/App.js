@@ -12,26 +12,30 @@ import Title from "./Title";
 import { getInitialPriceData } from "./DataProvider";
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      chartData: getInitialPriceData()
-    };
-
-    this.eventSource = new EventSource("http://sse");
-  }
+	constructor(props) {
+		super(props);
+		this.state ={chartData: getInitialPriceData()};
+	}
 
   componentDidMount() {
-    this.eventSource.onmessage = event => {
-      var price = JSON.parse(event.data);
+	  // fetch('http://ec2-54-158-138-224.compute-1.amazonaws.com:8080/vest/v1/stats?code=gc&rangeStart=2015-01-01&rangeEnd=2018-10-30&periodStart=2017-01-01&periodEnd=2018-03-01')
+	  // .then(response => response.json())
+	  // .then(data => this.setState({chartData: data}));  
+	  //.then(function (myJson) { console.log(JSON.stringify(myJson));   })
+	  // this.eventSource.onmessage = event => {
+      // var price = JSON.parse(event.data);
       // console.log(price); //Array of 365 random numbers
-      var someProperty = { ...this.state.chartData };
+      // var someProperty = { ...this.state.chartData };
 
-      someProperty.chart.values = price;
+      // someProperty.chart.values = price;
 
-      this.setState({ someProperty });
-    };
+      // this.setState({ someProperty });
+    // };
   }
+  
+  
+  
+  
 
   render() {
     return (
