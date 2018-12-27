@@ -50,12 +50,12 @@ class App extends Component {
                     </div>
                   </div>
                 </div>
-                <Cumulative chartData={this.state.chartData} />
-                <Pattern chartData={this.state.chartData} />
+                <Cumulative />
+                <Pattern />
                 <Table />
               </div>
             </div>
-            <Sidebar chartData={this.state.chartData} />
+            <Sidebar />
           </div>
         </div>
       </div>

@@ -1,14 +1,8 @@
 import React, { Component } from "react";
 import { Doughnut } from "react-chartjs-2";
+import { connect } from "react-redux";
 
 class Sidebar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      chartData: props.chartData
-    };
-  }
-
   render() {
     return (
       <div class="col-12 col-lg-3">
@@ -29,11 +23,13 @@ class Sidebar extends Component {
               <div class="card-body">
                 <Doughnut
                   data={{
-                    labels: this.state.chartData.equityChartData.labels,
+                    labels: this.props.labels,
                     datasets: [
                       {
                         label: "price",
-                        data: [ 3,17
+                        data: [
+                          3,
+                          17
                           //this.state.chartData.chart.values[0],
                           //this.state.chartData.chart.values[2]
                         ],
@@ -83,4 +79,7 @@ class Sidebar extends Component {
   }
 }
 
-export default Sidebar;
+const mapStateToProps = state => state.equityChartData;
+const SidebarContainer = connect(mapStateToProps)(Sidebar);
+
+export default SidebarContainer;

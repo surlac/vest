@@ -1,14 +1,8 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
+import { connect } from "react-redux";
 
 class Cumulative extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      chartData: props.chartData
-    };
-  }
-
   render() {
     return (
       <div class="col-12 col-lg-6 mini-padding">
@@ -17,12 +11,12 @@ class Cumulative extends Component {
             <h4>cumulative</h4>
             <Line
               data={{
-                labels: this.state.chartData.equityChartData.labels,
+                labels: this.props.labels,
                 datasets: [
                   {
                     label: "price",
-                    data: this.state.chartData.equityChartData.values,
-                    
+                    data: this.props.values,
+
                     borderWidth: 2,
                     borderColor: "#0cabc2",
                     pointRadius: 0
@@ -38,4 +32,7 @@ class Cumulative extends Component {
   }
 }
 
-export default Cumulative;
+const mapStateToProps = state => state.equityChartData;
+const CumulativeContainer = connect(mapStateToProps)(Cumulative);
+
+export default CumulativeContainer;

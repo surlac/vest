@@ -1,14 +1,8 @@
 import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
+import { connect } from "react-redux";
 
 class Pattern extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      chartData: props.chartData
-    };
-  }
-
   render() {
     return (
       <div class="col-12 col-lg-6 mini-padding">
@@ -17,11 +11,11 @@ class Pattern extends Component {
             <h4>patterns</h4>
             <Bar
               data={{
-                labels: this.state.chartData.equityChartData.labels,
+                labels: this.props.labels,
                 datasets: [
                   {
                     label: "price",
-                    data: this.state.chartData.equityChartData.values,
+                    data: this.props.values,
                     backgroundColor: "#c6e8ef",
                     borderWidth: 2,
                     borderColor: "#0cabc2",
@@ -38,4 +32,7 @@ class Pattern extends Component {
   }
 }
 
-export default Pattern;
+const mapStateToProps = state => state.equityChartData;
+const PatternContainer = connect(mapStateToProps)(Pattern);
+
+export default PatternContainer;
