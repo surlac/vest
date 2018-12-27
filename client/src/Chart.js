@@ -1,29 +1,24 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
+import { connect } from "react-redux";
 
 class Chart extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      chartData: props.chartData
-    };
-  }
-
   static defaultProps = {
     displayTitle: false,
     displayLegend: false
   };
 
   render() {
+    console.log(this.props);
     return (
       <div className="chart">
         <Line
           data={{
-            labels: this.state.chartData.equityChartData.labels,
+            labels: this.props.labels,
             datasets: [
               {
                 label: "price",
-                data: this.state.chartData.equityChartData.values,
+                data: this.props.values,
                 backgroundColor: "#c6e8ef",
                 borderWidth: 2,
                 borderColor: "#0cabc2",
@@ -38,4 +33,7 @@ class Chart extends Component {
   }
 }
 
-export default Chart;
+const mapStateToProps = state => state.equityChartData;
+const ChartContainer = connect(mapStateToProps)(Chart);
+
+export default ChartContainer;
