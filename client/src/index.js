@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
 import "./index.css";
 import App from "./App";
+import { BrowserRouter } from 'react-router-dom';
 
 var initialState = getInitialPriceData();
 
@@ -32,7 +33,9 @@ const store = createStore(reducer);
 
 ReactDOM.render(
   <Provider store={store}>
+	<BrowserRouter>
     <App />
+	</BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );

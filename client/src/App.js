@@ -10,6 +10,7 @@ import Control from "./Control";
 import Search from "./Search";
 import Title from "./Title";
 import { getInitialPriceData } from "./DataProvider";
+import { Route, Switch } from "react-router-dom";
 
 class App extends Component {
   constructor(props) {
@@ -35,29 +36,40 @@ class App extends Component {
     return (
       <div>
         <Header />
-
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12 col-lg-9">
-              <div class="row">
-                <Title />
-                <Search />
-                <Control />
-                <div class="col-12 mini-padding">
-                  <div class="card">
-                    <div class="card-body">
-                      <ChartContainer />
+        <Switch>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 col-lg-9">
+                <div class="row">
+                  <Title />
+                  <Search />
+                  <Control />
+                  <div class="col-12 mini-padding">
+                    <div class="card">
+                      <div class="card-body">
+                        <Route exact path="/" component={ChartContainer} />
+                        <Route path="/crypto" component={ChartContainer} />
+                        <Route path="/commodities" component={ChartContainer} />
+                        <Route path="/american" component={ChartContainer} />
+                        <Route path="/european" component={ChartContainer} />
+                        <Route
+                          path="/international"
+                          component={ChartContainer}
+                        />
+                        <Route path="/stocks" component={ChartContainer} />
+                        <Route path="/ussectors" component={ChartContainer} />
+                      </div>
                     </div>
                   </div>
+                  <Cumulative />
+                  <Pattern />
+                  <Table />
                 </div>
-                <Cumulative />
-                <Pattern />
-                <Table />
               </div>
+              <Sidebar />
             </div>
-            <Sidebar />
           </div>
-        </div>
+        </Switch>
       </div>
     );
   }

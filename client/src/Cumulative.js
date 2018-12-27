@@ -16,7 +16,7 @@ class Cumulative extends Component {
                   {
                     label: "price",
                     data: this.props.values,
-
+                    fill: false,
                     borderWidth: 2,
                     borderColor: "#0cabc2",
                     pointRadius: 0

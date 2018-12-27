@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 
 function Header() {
   return (
     <nav class="navbar navbar-expand-xl bg-light navbar-light">
-      <a class="navbar-brand" href="index.htm" />
+	  <Link class="navbar-brand" to='/'></Link> 
       <button
         class="navbar-toggler"
         type="button"
@@ -15,44 +16,28 @@ function Header() {
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              Currencies
-            </a>
+              <Link class="nav-link" to='/'>Currencies</Link> 
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              Crypto
-            </a>
+              <Link class="nav-link" to='/crypto'>Crypto</Link>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              Commodities
-            </a>
+		  <li class="nav-item">
+              <Link class="nav-link" to='/commodities'>Commodities</Link>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              American
-            </a>
+		  <li class="nav-item">
+              <Link class="nav-link" to='/american'>American</Link>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              European
-            </a>
+		  <li class="nav-item">
+              <Link class="nav-link" to='/european'>European</Link>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              International
-            </a>
+		  <li class="nav-item">
+              <Link class="nav-link" to='/international'>International</Link>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              Stocks
-            </a>
+		  <li class="nav-item">
+              <Link class="nav-link" to='/stocks'>Stocks</Link>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              US Sectors
-            </a>
+		  <li class="nav-item">
+              <Link class="nav-link" to='/ussectors'>US Sectors</Link>
           </li>
         </ul>
         <ul class="navbar-nav ml-auto d-none d-xl-block">
