@@ -43,6 +43,11 @@
   padding-left: 0.375rem;
 }
 
+.no-padding {
+  padding-right: 0rem;
+  padding-left: 0rem;
+}
+
 .navbar-brand {
   width: 154px;
   height: 40px;

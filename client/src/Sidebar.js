@@ -23,7 +23,7 @@ class Sidebar extends Component {
               <div class="card-body">
                 <Doughnut
                   data={{
-                    labels: this.props.labels,
+                    labels: this.props.annualized_return,
                     datasets: [
                       {
                         label: "price",
@@ -43,12 +43,18 @@ class Sidebar extends Component {
                   options={{ legend: { display: false } }}
                 />
               </div>
+              <div class="card-body">
+                <h4>Annualized return: {this.props.annualized_return}</h4>
+              </div>
             </div>
           </div>
           <div class="col-12 mini-padding">
             <div class="card">
               <div class="card-body">
                 <h4>Return</h4>
+              </div>
+              <div class="card-body">
+                <h4>{this.props.annualized_rest}</h4>
               </div>
             </div>
           </div>
@@ -57,6 +63,9 @@ class Sidebar extends Component {
               <div class="card-body">
                 <h4>Profit</h4>
               </div>
+              <div class="card-body">
+                <h4>{this.props.winner_profit}</h4>
+              </div>
             </div>
           </div>
           <div class="col-12 mini-padding">
@@ -64,12 +73,20 @@ class Sidebar extends Component {
               <div class="card-body">
                 <h4>gains losses</h4>
               </div>
+              <div class="card-body">
+                <h4>
+                  {this.props.max_profit}-{this.props.max_loss}
+                </h4>
+              </div>
             </div>
           </div>
           <div class="col-12 mini-padding">
             <div class="card">
               <div class="card-body">
                 <h4>miscellaneous</h4>
+              </div>
+              <div class="card-body">
+                <h4>{this.props.annualized_rest}</h4>
               </div>
             </div>
           </div>
@@ -79,7 +96,7 @@ class Sidebar extends Component {
   }
 }
 
-const mapStateToProps = state => state.equityChartData;
+const mapStateToProps = state => state.stats;
 const SidebarContainer = connect(mapStateToProps)(Sidebar);
 
 export default SidebarContainer;
