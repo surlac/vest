@@ -1,19 +1,30 @@
-import React from "react";
-import { Link } from 'react-router-dom'
+import React, {Component} from "react";
+import { Link } from 'react-router-dom';
 
-function Header() {
-  return (
+class Header extends Component {
+	constructor(props) {
+    super(props);
+    this.state = {isToggleOn: true};
+    this.handleClick = this.handleClick.bind(this);
+  }
+  
+  handleClick() {
+    this.setState(state => ({ isToggleOn: !state.isToggleOn }));
+  }
+	render(){
+		return (
     <nav class="navbar navbar-expand-xl bg-light navbar-light">
 	  <Link class="navbar-brand" to='/'></Link> 
       <button
         class="navbar-toggler"
         type="button"
+		onClick={this.handleClick}
         data-toggle="collapse"
         data-target="#collapsibleNavbar"
       >
         <span class="navbar-toggler-icon" />
       </button>
-      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+	  <div className={"navbar-collapse " + (this.state.isToggleOn ? 'collapse' : '')} id="collapsibleNavbar">
         <ul class="navbar-nav">
           <li class="nav-item">
               <Link class="nav-link" to='/'>Currencies</Link> 
@@ -50,7 +61,8 @@ function Header() {
         </ul>
       </div>
     </nav>
-  );
+  )
+	}
 }
 
 export default Header;
