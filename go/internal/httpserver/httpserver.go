@@ -16,6 +16,8 @@ import (
 
 	"vest.com/vest/go/internal/api"
 	"vest.com/vest/go/internal/log"
+
+	"github.com/rs/cors"
 )
 
 const (
@@ -237,10 +239,14 @@ func (b routeBuilder) build() http.Handler {
 	}
 
 	chartsGet := newChartsGetHandler(b.api)
+	statsGet := newStatsGetHandler(b.api)
+	navigationGet := newNavigationGetHandler(b.api)
 
 	routes := func() routePaths {
 		return routePaths{
-			"v1/charts": {http.MethodHead: chartsGet, http.MethodGet: chartsGet},
+			"v1/charts":     {http.MethodHead: chartsGet, http.MethodGet: chartsGet},
+			"v1/stats":      {http.MethodHead: statsGet, http.MethodGet: statsGet},
+			"v1/navigation": {http.MethodHead: navigationGet, http.MethodGet: navigationGet},
 		}
 	}
 
@@ -319,14 +325,18 @@ func (s *HTTPServer) Close() error {
 func (s *HTTPServer) serveHTTP() {
 	defer close(s.doneServeHTTP)
 
+	crs := corsHandler()
+
 	ctx := context.Background()
 
 	nonBatchRoutes := func() router {
 		return func(h http.Handler) http.Handler {
 			return panicLogHandler{
-				commonParamHandler{
-					h,
-				},
+				crs.Handler(
+					commonParamHandler{
+						h,
+					},
+				),
 			}
 		}
 	}
@@ -398,4 +408,15 @@ func tcpListen(addr string) (net.Listener, error) {
 		return nil, err
 	}
 	return tcpLn, nil
+}
+
+func corsHandler() *cors.Cors {
+	return cors.New(
+		cors.Options{
+			AllowedMethods: []string{http.MethodGet, http.MethodHead, http.MethodPost, http.MethodPut, http.MethodDelete},
+			AllowedHeaders: []string{"*"},
+			ExposedHeaders: []string{"Allow", "Content-Length", "Content-Encoding", "Content-Type", "Date", "ETag", "Vary", "Location"},
+			MaxAge:         3600,
+		},
+	)
 }
