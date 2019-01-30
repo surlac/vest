@@ -4,18 +4,19 @@ import { connect } from "react-redux";
 
 class Cumulative extends Component {
   render() {
+	var { labels, values } = this.props.repos;
     return (
-      <div class="col-12 col-lg-6 mini-padding">
-        <div class="card">
-          <div class="card-body">
+      <div className="col-12 col-lg-6 mini-padding">
+        <div className="card">
+          <div className="card-body">
             <h4>cumulative</h4>
             <Line
               data={{
-                labels: this.props.labels,
+                labels: labels,
                 datasets: [
                   {
                     label: "price",
-                    data: this.props.values,
+                    data: values,
                     fill: false,
                     borderWidth: 2,
                     borderColor: "#0cabc2",
@@ -32,7 +33,10 @@ class Cumulative extends Component {
   }
 }
 
-const mapStateToProps = state => state.equityChartData;
+const mapStateToProps = state => ({ repos: state.chart });
 const CumulativeContainer = connect(mapStateToProps)(Cumulative);
 
 export default CumulativeContainer;
+
+
+

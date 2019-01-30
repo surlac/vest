@@ -37,25 +37,22 @@ class App extends Component {
       <div>
         <Header />
         <Switch>
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-12 col-lg-9">
-                <div class="row">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-12 col-lg-9">
+                <div className="row">
                   <Title />
                   <Search />
                   <Control />
-                  <div class="col-12 mini-padding">
-                    <div class="card">
-                      <div class="card-body">
+                  <div className="col-12 mini-padding">
+                    <div className="card">
+                      <div className="card-body">
                         <Route exact path="/" component={ChartContainer} />
                         <Route path="/crypto" component={ChartContainer} />
                         <Route path="/commodities" component={ChartContainer} />
                         <Route path="/american" component={ChartContainer} />
                         <Route path="/european" component={ChartContainer} />
-                        <Route
-                          path="/international"
-                          component={ChartContainer}
-                        />
+                        <Route path="/international" component={ChartContainer} />
                         <Route path="/stocks" component={ChartContainer} />
                         <Route path="/ussectors" component={ChartContainer} />
                       </div>
