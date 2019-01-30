@@ -13,50 +13,50 @@ class Header extends Component {
   }
 	render(){
 		return (
-    <nav class="navbar navbar-expand-xl bg-light navbar-light">
-	  <Link class="navbar-brand" to='/'></Link> 
+    <nav className="navbar navbar-expand-xl bg-light navbar-light">
+	  <Link className="navbar-brand" to='/'></Link> 
       <button
-        class="navbar-toggler"
+        className="navbar-toggler"
         type="button"
 		onClick={this.handleClick}
         data-toggle="collapse"
         data-target="#collapsibleNavbar"
       >
-        <span class="navbar-toggler-icon" />
+        <span className="navbar-toggler-icon" />
       </button>
 	  <div className={"navbar-collapse " + (this.state.isToggleOn ? 'collapse' : '')} id="collapsibleNavbar">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-              <Link class="nav-link" to='/'>Currencies</Link> 
+        <ul className="navbar-nav">
+          <li className="nav-item">
+              <Link className="nav-link" to='/'>Currencies</Link> 
           </li>
-          <li class="nav-item">
-              <Link class="nav-link" to='/crypto'>Crypto</Link>
+          <li className="nav-item">
+              <Link className="nav-link" to='/crypto'>Crypto</Link>
           </li>
-		  <li class="nav-item">
-              <Link class="nav-link" to='/commodities'>Commodities</Link>
+		  <li className="nav-item">
+              <Link className="nav-link" to='/commodities'>Commodities</Link>
           </li>
-		  <li class="nav-item">
-              <Link class="nav-link" to='/american'>American</Link>
+		  <li className="nav-item">
+              <Link className="nav-link" to='/american'>American</Link>
           </li>
-		  <li class="nav-item">
-              <Link class="nav-link" to='/european'>European</Link>
+		  <li className="nav-item">
+              <Link className="nav-link" to='/european'>European</Link>
           </li>
-		  <li class="nav-item">
-              <Link class="nav-link" to='/international'>International</Link>
+		  <li className="nav-item">
+              <Link className="nav-link" to='/international'>International</Link>
           </li>
-		  <li class="nav-item">
-              <Link class="nav-link" to='/stocks'>Stocks</Link>
+		  <li className="nav-item">
+              <Link className="nav-link" to='/stocks'>Stocks</Link>
           </li>
-		  <li class="nav-item">
-              <Link class="nav-link" to='/ussectors'>US Sectors</Link>
+		  <li className="nav-item">
+              <Link className="nav-link" to='/ussectors'>US Sectors</Link>
           </li>
         </ul>
-        <ul class="navbar-nav ml-auto d-none d-xl-block">
-          <button type="button" class="btn btn-outline-info mr-2">
-            <i class="fa fa-heart-o mr-1" /> Signup
+        <ul className="navbar-nav ml-auto d-none d-xl-block">
+          <button type="button" className="btn btn-outline-info mr-2">
+            <i className="fa fa-heart-o mr-1" /> Signup
           </button>
-          <button type="button" class="btn btn-outline-info">
-            <i class="fa fa-sign-in mr-1" /> Login
+          <button type="button" className="btn btn-outline-info">
+            <i className="fa fa-sign-in mr-1" /> Login
           </button>
         </ul>
       </div>

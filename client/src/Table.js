@@ -2,22 +2,37 @@ import React from "react";
 import { connect } from "react-redux";
 
 function Table(props) {
-  var start_date = props.equityChartData.labels[0];
-  var start_price = props.equityChartData.values[0];
+  // var start_date = props.equityChartData.labels[0];
+  // var start_price = props.equityChartData.values[0];
+  // var end_date =
+    // props.equityChartData.labels[props.equityChartData.labels.length - 1];
+  // var end_price =
+    // props.equityChartData.values[props.equityChartData.values.length - 1];
+  // var profit = (end_price - start_price).toFixed(2);
+  // var profit_percent = props.stats.profit_rate;
+  // var max_rise = props.stats.max_profit;
+  // var max_drop = props.stats.max_loss;
+  
+  var start_date = 5;
+  var start_price = 3;
   var end_date =
-    props.equityChartData.labels[props.equityChartData.labels.length - 1];
+    2;
   var end_price =
-    props.equityChartData.values[props.equityChartData.values.length - 1];
-  var profit = (end_price - start_price).toFixed(2);
-  var profit_percent = props.stats.profit_rate;
-  var max_rise = props.stats.max_profit;
-  var max_drop = props.stats.max_loss;
+    8;
+  var profit = 2;
+  var profit_percent = 9;
+  var max_rise = 4;
+  var max_drop = 9;
+  
+  
+  
+  
 
   return (
-    <div class="col-12 mini-padding">
-      <div class="card">
-        <div class="card-body">
-          <table class="table table-sm table-striped">
+    <div className="col-12 mini-padding">
+      <div className="card">
+        <div className="card-body">
+          <table className="table table-sm table-striped">
             <thead>
               <tr>
                 <th>Start date</th>

@@ -2,11 +2,11 @@ import React from "react";
 
 function Search() {
   return (
-    <div class="col-12 col-md-5 mini-padding">
-      <div class="card searching">
-        <div class="card-body">
-          <span class="searching">
-            <i class="fa fa-search mr-2" />
+    <div className="col-12 col-md-5 mini-padding">
+      <div className="card searching">
+        <div className="card-body">
+          <span className="searching">
+            <i className="fa fa-search mr-2" />
             Search over 10.000 assets
           </span>
         </div>
