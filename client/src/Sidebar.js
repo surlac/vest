@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { connect } from "react-redux";
+import "./sidebar.css";
 
 class Sidebar extends Component {
   render() {
@@ -44,51 +45,136 @@ class Sidebar extends Component {
                 />
               </div>
               <div class="card-body">
-                <h4>Annualized return: {this.props.annualized_return}</h4>
+							<div class="major">
+								<div class="holder num-plus">
+									<div class="larger">+58.91%</div>
+									<div class="smaller">Annualized return</div>
+								</div>
+								<div class="holder num-plus">
+									<div class="larger">70.00%</div>
+									<div class="smaller">Winning trades</div>
+								</div>
+							</div>
               </div>
             </div>
           </div>
           <div class="col-12 mini-padding">
-            <div class="card">
-              <div class="card-body">
-                <h4>Return</h4>
-              </div>
-              <div class="card-body">
-                <h4>{this.props.annualized_rest}</h4>
-              </div>
-            </div>
+				<div class="card">
+					<div class="card-body">
+							<div class="heading">Return</div>
+							<div class="major">
+								<div class="holder num-plus">
+									<div class="larger">43%</div>
+									<div class="smaller">Annualized return</div>
+								</div>
+								<div class="holder num-plus">
+									<div class="larger">43%</div>
+									<div class="smaller">Annualized / Rest</div>
+								</div>
+							</div>
+							<div class="major">
+								<div class="holder num-plus">
+									<div class="larger">43%</div>
+									<div class="smaller">Average return</div>
+								</div>
+								<div class="holder num-plus">
+									<div class="larger">43%</div>
+									<div class="smaller">Median return</div>
+								</div>
+							</div>
+					</div>
+				</div>
           </div>
-          <div class="col-12 mini-padding">
-            <div class="card">
-              <div class="card-body">
-                <h4>Profit</h4>
-              </div>
-              <div class="card-body">
-                <h4>{this.props.winner_profit}</h4>
-              </div>
-            </div>
+		  <div class="col-12 mini-padding">
+				<div class="card">
+					<div class="card-body">
+							<div class="heading">Profit</div>
+							<div class="major">
+								<div class="holder num-plus">
+									<div class="larger">43%</div>
+									<div class="smaller">Total profit</div>
+								</div>
+								<div class="holder num-plus">
+									<div class="larger">43%</div>
+									<div class="smaller">Average profit</div>
+								</div>
+							</div>
+					</div>
+				</div>
           </div>
-          <div class="col-12 mini-padding">
-            <div class="card">
-              <div class="card-body">
-                <h4>gains losses</h4>
-              </div>
-              <div class="card-body">
-                <h4>
-                  {this.props.max_profit}-{this.props.max_loss}
-                </h4>
-              </div>
-            </div>
+		  <div class="col-12 mini-padding">
+				<div class="card">
+					<div class="card-body">
+							<div class="heading">Gains - Losses</div>
+							<div class="major">
+								<div class="holder num-plus">
+									<div class="larger">6</div>
+									<div class="smaller">Gains</div>
+								</div>
+								<div class="holder num-minus">
+									<div class="larger">4</div>
+									<div class="smaller">Losses</div>
+								</div>
+							</div>
+							<div class="major">
+								<div class="holder num-plus">
+									<div class="larger">+8.51%</div>
+									<div class="smaller">Profit</div>
+								</div>
+								<div class="holder num-minus">
+									<div class="larger">-2.99%</div>
+									<div class="smaller">Profit</div>
+								</div>
+							</div>
+							<div class="major">
+								<div class="holder num-plus">
+									<div class="larger">+20.86%</div>
+									<div class="smaller">Max.profit</div>
+								</div>
+								<div class="holder num-minus">
+									<div class="larger">-4.64%</div>
+									<div class="smaller">Max.loss</div>
+								</div>
+							</div>
+					</div>
+				</div>
           </div>
-          <div class="col-12 mini-padding">
-            <div class="card">
-              <div class="card-body">
-                <h4>miscellaneous</h4>
-              </div>
-              <div class="card-body">
-                <h4>{this.props.annualized_rest}</h4>
-              </div>
-            </div>
+		  <div class="col-12 mini-padding">
+				<div class="card">
+					<div class="card-body num-grey">
+							<div class="heading">Miscellaneous</div>
+							<div class="major">
+								<div class="holder">
+									<div class="larger">10</div>
+									<div class="smaller">Trades</div>
+								</div>
+								<div class="holder">
+									<div class="larger">1 loss</div>
+									<div class="smaller">Current streak</div>
+								</div>
+							</div>
+							<div class="major">
+								<div class="holder">
+									<div class="larger">40%</div>
+									<div class="smaller">Trading days</div>
+								</div>
+								<div class="holder">
+									<div class="larger">56%</div>
+									<div class="smaller">Calendar days</div>
+								</div>
+							</div>
+							<div class="major">
+								<div class="holder">
+									<div class="larger">60,00%</div>
+									<div class="smaller">Winning trades</div>
+								</div>
+								<div class="holder">
+									<div class="larger">8,03%</div>
+									<div class="smaller">Standard deviation</div>
+								</div>
+							</div>
+					</div>
+				</div>
           </div>
         </div>
       </div>
