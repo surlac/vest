@@ -37,3 +37,10 @@
 		color: #969ba0;
 	}
 	
+	.date-separator {
+		width: 28px;
+		font-size: 24px;
+		line-height: 32px;
+		text-align: center;
+		color:green;
+	}

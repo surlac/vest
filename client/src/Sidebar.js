@@ -3,6 +3,8 @@ import { Doughnut } from "react-chartjs-2";
 import { connect } from "react-redux";
 import "./sidebar.css";
 
+import Example from "./Datepick";
+
 class Sidebar extends Component {
   render() {
 	var { values } = this.props.repos;
@@ -13,9 +15,7 @@ class Sidebar extends Component {
             <div className="card">
               <div className="card-body">
                 <div className="row justify-content-center">
-                  <span className="btn btn-info pattern-filter">10 Dec</span>
-                  <span className="date-separator">-</span>
-                  <span className="btn btn-info pattern-filter">3 Mar</span>
+				  <Example/>
                 </div>
               </div>
             </div>
@@ -168,7 +168,7 @@ class Sidebar extends Component {
 									<div className="larger">8,03%</div>
 									<div className="smaller">Standard deviation</div>
 								</div>
-							</div>
+							</div>		
 					</div>
 				</div>
           </div>
