@@ -57,9 +57,9 @@ class Control extends React.Component {
 					  Filter
 					</button>
 					<div className={"dropdown-menu " + (this.state.isFilterOn ? 'show' : '')} >
-					  <a className="dropdown-item" href="i.htm">Link 1</a>
-					  <a className="dropdown-item" href="i.htm">Link 2</a>
-					  <a className="dropdown-item" href="i.htm">Link 3</a>
+					  <a className="dropdown-item" href="i.htm"><i className="fa fa-arrow-circle-up mr-2"></i>Bullish</a>
+					  <a className="dropdown-item" href="i.htm"><i className="fa fa-arrow-circle-down mr-2"></i>Bearish</a>
+					  <a className="dropdown-item" href="i.htm"><i className="fa fa-arrow-circle-right mr-2"></i>Neutral</a>
 					</div>
 				  </div>
 				  <select onChange={this.handleChange} className="custom-select year float-right mr-2" id="selectRange">
@@ -85,9 +85,9 @@ class Control extends React.Component {
 					  Share
 					</button>
 					<div className={"dropdown-menu " + (this.state.isShareOn ? 'show' : '')} >
-					  <a className="dropdown-item" href="i.htm">Link 1</a>
-					  <a className="dropdown-item" href="i.htm">Link 2</a>
-					  <a className="dropdown-item" href="i.htm">Link 3</a>
+					  <a className="dropdown-item" href="i.htm"><i className="fa fa-files-o mr-2"></i>Copy Link</a>
+					  <a className="dropdown-item" href="i.htm"><i className="fa fa-file-image-o mr-2"></i>Screenshot</a>
+					  <a className="dropdown-item" href="i.htm"><i className="fa fa-file-code-o mr-2"></i>Embed code</a>
 					</div>
 				  </div>
 				  <span className="btn controller float-right mr-2"><i className="fa fa-question-circle" /></span>

@@ -27,7 +27,7 @@ class Header extends Component {
 	  <div className={"navbar-collapse " + (this.state.isToggleOn ? 'collapse' : '')} id="collapsibleNavbar">
         <ul className="navbar-nav">
           <li className="nav-item">
-              <Link className="nav-link" to='/'>Currencies</Link> 
+              <Link className="nav-link" to='/'>Gold</Link> 
           </li>
           <li className="nav-item">
               <Link className="nav-link" to='/crypto'>Crypto</Link>
