@@ -4,11 +4,8 @@ function Search() {
   return (
     <div className="col-12 col-md-5 mini-padding">
       <div className="card searching">
-        <div className="card-body">
-          <span className="searching">
-            <i className="fa fa-search mr-2" />
-            Search over 10.000 assets
-          </span>
+        <div className="card-body">		
+			<input type="text" placeholder="Search over 100 assets ..." className="tt-input" autoComplete="off" spellCheck="false" dir="auto" style={{position: "relative", verticalAlign: "top", backgroundColor: "transparent"}} />			
         </div>
       </div>
     </div>

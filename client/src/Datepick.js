@@ -39,7 +39,6 @@ const getStats = dates => async dispatch => {
   }
 };
 
-
 class Example extends Component {
   constructor(props) {
     super(props);

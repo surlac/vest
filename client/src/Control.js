@@ -1,19 +1,18 @@
 import React from 'react';
 import { connect } from "react-redux";
 
-
 const addRepos = repos => ({ type: "ADD_REPOS", repos });
 const clearRepos = () => ({ type: "CLEAR_REPOS" });
 
 const getRepos = username => async dispatch => {
   try {
 	var rangestart;
-	if (username === "5") {rangestart = '2016-01-01'};
-	if (username === "10") {rangestart = '2015-01-01'};
-	if (username === "15") {rangestart = '2014-01-01'};
-	if (username === "20") {rangestart = '2013-01-01'};
-	if (username === "25") {rangestart = '2012-01-01'};
-	var url = `http://ec2-54-84-182-191.compute-1.amazonaws.com:8080/vest/v1/charts?code=gc&rs=${rangestart}&re=2019-01-26`;
+	var rangeend = new Date().toISOString().substring(0, 10);
+	if (username === "1")  {rangestart = '2018-01-01'};
+	if (username === "2") {rangestart = '2017-01-01'};
+	if (username === "5") {rangestart = '2014-01-01'};
+	if (username === "10") {rangestart = '2009-01-01'};
+	var url = `http://ec2-54-84-182-191.compute-1.amazonaws.com:8080/vest/v1/charts?code=gc&rs=${rangestart}&re=${rangeend}`;
     const response = await fetch(url);
     const responseBody = await response.json();
     dispatch(addRepos(responseBody));
@@ -24,17 +23,44 @@ const getRepos = username => async dispatch => {
 };
 
 
+const addStats = repos => ({ type: "ADD_STATS", repos });
+const getStats = dates => async dispatch => {
+  try {
+	var rangestart;
+	var rangeend = new Date().toISOString().substring(0, 10);
+	if (dates === "1")  {rangestart = '2018-01-01'};
+	if (dates === "2") {rangestart = '2017-01-01'};
+	if (dates === "5") {rangestart = '2014-01-01'};
+	if (dates === "10") {rangestart = '2009-01-01'};
+	var url = `http://ec2-54-84-182-191.compute-1.amazonaws.com:8080/vest/v1/stats?code=gc&rangeStart=${rangestart}&rangeEnd=${rangeend}&periodStart=2017-01-01&periodEnd=2018-03-01`;
+	const response = await fetch(url);
+    const responseBody = await response.json();
+    dispatch(addStats(responseBody));
+  } catch (error) {
+    console.log(error);
+    dispatch(clearRepos());
+  }
+};
+
+
+
 class Control extends React.Component {
 	constructor(props) {
 		super(props);
 		this.handleChange = this.handleChange.bind(this);
-		this.state = {isFilterOn: false, isShareOn: false};
+		this.state = {
+			isFilterOn: false, 
+			isShareOn: false,
+			startDate: new Date(2018,0,1),
+			endDate: new Date(2019,0,1)
+		};
 		this.handleFilter = this.handleFilter.bind(this);
 		this.handleShare = this.handleShare.bind(this);
 	}
 
 	handleChange(event) {
 		this.props.getRepos(event.target.value);
+		this.props.getStats(event.target.value);
 	}
 	
 	handleFilter() {
@@ -63,11 +89,10 @@ class Control extends React.Component {
 					</div>
 				  </div>
 				  <select onChange={this.handleChange} className="custom-select year float-right mr-2" id="selectRange">
-					<option value="5">  5 years</option>
+					<option value="1"> 1 year</option>
+					<option value="2"> 2 years</option>
+					<option value="5"> 5 years</option>
 					<option value="10">10 years</option>
-					<option value="15">15 years</option>
-					<option value="20">20 years</option>
-					<option value="25">25 years</option>
 				  </select>
 				  
 				  <div className="btn-group float-right mr-2">
@@ -91,19 +116,14 @@ class Control extends React.Component {
 					</div>
 				  </div>
 				  <span className="btn controller float-right mr-2"><i className="fa fa-question-circle" /></span>
-			
-			
 					</div>
 				</div>
 			</div>
-			
-			
-			
 		);
 	}
 }
 
-const mapDispatchToProps = { getRepos };
+const mapDispatchToProps = { getRepos, getStats };
 const ControlContainer = connect(null, mapDispatchToProps)(Control);
 
 export default ControlContainer;
