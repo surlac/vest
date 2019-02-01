@@ -45,12 +45,11 @@ class Sidebar extends Component {
               <div className="card-body">
                 <Doughnut
                   data={{
-                    labels: "",
+                    labels: [annualized_return,annualized_rest],
                     datasets: [
                       {
                         label: "price",
-                        data: [1,2],
-						//[values[0], values[values.length - 1] ],
+                        data: [annualized_return,annualized_rest],
                         backgroundColor: ["#C5CACD", "#0cabc2"],
                         borderWidth: 2,
                         borderColor: "white",

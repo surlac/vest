@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-function Table(props) {
+function Table(props) { 
   return (
     <div className="col-12 mini-padding">
       <div className="card">
@@ -22,8 +22,7 @@ function Table(props) {
             <tbody>
               <Horizontal info={props.data[0]} />
               <Horizontal info={props.data[1]} />
-			  <Horizontal info={props.data[2]} />
-              <Horizontal info={props.data[3]} />
+			  
             </tbody>
           </table>
         </div>
@@ -32,7 +31,7 @@ function Table(props) {
   );
 }
 
-function Horizontal(props){
+function Horizontal(props){ 
 	var { start_date, end_date, start_price, end_price, max_drop, max_rise, profit_abs, profit_rel } = props.info;
 	return (
 		<tr>

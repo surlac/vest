@@ -695,7 +695,9 @@ var initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_REPOS":
-	  return Object.assign({}, state, action.repos)
+	  return Object.assign({}, state, action.repos);
+	case "ADD_STATS":
+      return Object.assign({}, state, action.repos);  
     case "CLEAR_REPOS":
       return {};
     default:
