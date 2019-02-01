@@ -2,32 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 
 function Table(props) {
-  // var start_date = props.equityChartData.labels[0];
-  // var start_price = props.equityChartData.values[0];
-  // var end_date =
-    // props.equityChartData.labels[props.equityChartData.labels.length - 1];
-  // var end_price =
-    // props.equityChartData.values[props.equityChartData.values.length - 1];
-  // var profit = (end_price - start_price).toFixed(2);
-  // var profit_percent = props.stats.profit_rate;
-  // var max_rise = props.stats.max_profit;
-  // var max_drop = props.stats.max_loss;
-  
-  var start_date = 5;
-  var start_price = 3;
-  var end_date =
-    2;
-  var end_price =
-    8;
-  var profit = 2;
-  var profit_percent = 9;
-  var max_rise = 4;
-  var max_drop = 9;
-  
-  
-  
-  
-
   return (
     <div className="col-12 mini-padding">
       <div className="card">
@@ -46,86 +20,10 @@ function Table(props) {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>{start_date}</td>
-                <td>{start_price}</td>
-                <td>{end_date}</td>
-                <td>{end_price}</td>
-                <td>{profit}</td>
-                <td>{profit_percent}</td>
-                <td>{max_rise}</td>
-                <td>{max_drop}</td>
-              </tr>
-              <tr>
-                <td>19 May 2011</td>
-                <td>6.8100</td>
-                <td>11 July 2011</td>
-                <td>14.2100</td>
-                <td>+7.40</td>
-                <td>+108.66%</td>
-                <td>+334.65%</td>
-                <td>-17.91%</td>
-              </tr>
-              <tr>
-                <td>19 May 2011</td>
-                <td>6.8100</td>
-                <td>11 July 2011</td>
-                <td>14.2100</td>
-                <td>+7.40</td>
-                <td>+108.66%</td>
-                <td>+334.65%</td>
-                <td>-17.91%</td>
-              </tr>
-              <tr>
-                <td>19 May 2011</td>
-                <td>6.8100</td>
-                <td>11 July 2011</td>
-                <td>14.2100</td>
-                <td>+7.40</td>
-                <td>+108.66%</td>
-                <td>+334.65%</td>
-                <td>-17.91%</td>
-              </tr>
-              <tr>
-                <td>19 May 2011</td>
-                <td>6.8100</td>
-                <td>11 July 2011</td>
-                <td>14.2100</td>
-                <td>+7.40</td>
-                <td>+108.66%</td>
-                <td>+334.65%</td>
-                <td>-17.91%</td>
-              </tr>
-              <tr>
-                <td>19 May 2011</td>
-                <td>6.8100</td>
-                <td>11 July 2011</td>
-                <td>14.2100</td>
-                <td>+7.40</td>
-                <td>+108.66%</td>
-                <td>+334.65%</td>
-                <td>-17.91%</td>
-              </tr>
-              <tr>
-                <td>19 May 2011</td>
-                <td>6.8100</td>
-                <td>11 July 2011</td>
-                <td>14.2100</td>
-                <td>+7.40</td>
-                <td>+108.66%</td>
-                <td>+334.65%</td>
-                <td>-17.91%</td>
-              </tr>
-              <tr>
-                <td>19 May 2011</td>
-                <td>6.8100</td>
-                <td>11 July 2011</td>
-                <td>14.2100</td>
-                <td>+7.40</td>
-                <td>+108.66%</td>
-                <td>+334.65%</td>
-                <td>-17.91%</td>
-              </tr>
+              <Horizontal info={props.data[0]} />
+              <Horizontal info={props.data[1]} />
+			  <Horizontal info={props.data[2]} />
+              <Horizontal info={props.data[3]} />
             </tbody>
           </table>
         </div>
@@ -134,7 +32,23 @@ function Table(props) {
   );
 }
 
-const mapStateToProps = state => state;
+function Horizontal(props){
+	var { start_date, end_date, start_price, end_price, max_drop, max_rise, profit_abs, profit_rel } = props.info;
+	return (
+		<tr>
+			<td>{start_date}</td>
+			<td>{start_price}</td>
+			<td>{end_date}</td>
+			<td>{end_price}</td>
+			<td>{profit_abs}</td>
+			<td>{profit_rel}</td>
+			<td>{max_rise}</td>
+			<td>{max_drop}</td>
+		</tr>
+	)
+}
+
+const mapStateToProps = state => ({ data: state.patterns });
 const TableContainer = connect(mapStateToProps)(Table);
 
 export default TableContainer;
