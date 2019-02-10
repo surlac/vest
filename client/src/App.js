@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import "./App.css";
-import Header from "./Header";
-import Cumulative from "./Cumulative";
-import Sidebar from "./Sidebar";
-import Pattern from "./Pattern";
-import Table from "./Table";
-import ChartContainer from "./Chart";
-import Control from "./Control";
-import Search from "./Search";
-import Title from "./Title";
-import Empty from "./Empty";
+import Header from "./components/Header";
+import CumulativeContainer from "./containers/CumulativeContainer";
+import SidebarContainer from "./containers/SidebarContainer";
+import PatternContainer from "./containers/PatternContainer";
+import TableContainer from "./containers/TableContainer";
+import ChartContainer from "./containers/ChartContainer";
+import ControlContainer from "./containers/ControlContainer";
+import Search from "./components/Search";
+import Title from "./components/Title";
+import Empty from "./components/Empty";
 import { Route, Switch } from "react-router-dom";
 
 class App extends Component {
@@ -24,7 +24,7 @@ class App extends Component {
                 <div className="row">
                   <Title />
                   <Search />
-                  <Control />
+                  <ControlContainer />
                   <div className="col-12 mini-padding">
                     <div className="card">
                       <div className="card-body">
@@ -39,12 +39,12 @@ class App extends Component {
                       </div>
                     </div>
                   </div>
-                  <Cumulative />
-                  <Pattern />
-                  <Table />
+                  <CumulativeContainer />
+                  <PatternContainer />
+                  <TableContainer />
                 </div>
               </div>
-              <Sidebar />
+              <SidebarContainer />
             </div>
           </div>
         </Switch>

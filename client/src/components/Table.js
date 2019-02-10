@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 
 function Table(props) { 
   return (
@@ -22,7 +21,6 @@ function Table(props) {
             <tbody>
               <Horizontal info={props.data[0]} />
               <Horizontal info={props.data[1]} />
-			  
             </tbody>
           </table>
         </div>
@@ -47,7 +45,6 @@ function Horizontal(props){
 	)
 }
 
-const mapStateToProps = state => ({ data: state.patterns });
-const TableContainer = connect(mapStateToProps)(Table);
 
-export default TableContainer;
+
+export default Table;

@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Doughnut } from "react-chartjs-2";
-import { connect } from "react-redux";
 import "./sidebar.css";
 
-import Example from "./Datepick";
+import ExampleContainer from "../containers/ExampleContainer";
 
 class Sidebar extends Component {
   render() {
@@ -35,7 +34,7 @@ class Sidebar extends Component {
             <div className="card">
               <div className="card-body">
                 <div className="row justify-content-center">
-				  <Example/>
+				  <ExampleContainer />
                 </div>
               </div>
             </div>
@@ -199,10 +198,7 @@ class Sidebar extends Component {
 }
 
 
-const mapStateToProps = state => ({ data: state.stats });
-const SidebarContainer = connect(mapStateToProps)(Sidebar);
-
-export default SidebarContainer;
+export default Sidebar;
 
 
 

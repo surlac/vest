@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
-import { connect } from "react-redux";
+
 
 class Chart extends Component {
   static defaultProps = { displayTitle: false, displayLegend: false };
@@ -27,7 +27,4 @@ class Chart extends Component {
   }
 }
 
-const mapStateToProps = state => ({ repos: state.chart });
-const ChartContainer = connect(mapStateToProps)(Chart);
-
-export default ChartContainer;
+export default Chart;

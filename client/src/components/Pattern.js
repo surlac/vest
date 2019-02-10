@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
-import { connect } from "react-redux";
+
 
 class Pattern extends Component {
   render() {
@@ -33,7 +33,4 @@ class Pattern extends Component {
   }
 }
 
-const mapStateToProps = state => ({ repos: state.chart });
-const PatternContainer = connect(mapStateToProps)(Pattern);
-
-export default PatternContainer;
+export default Pattern;

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
-import { connect } from "react-redux";
 
 class Cumulative extends Component {
   render() {
@@ -33,10 +32,7 @@ class Cumulative extends Component {
   }
 }
 
-const mapStateToProps = state => ({ repos: state.chart });
-const CumulativeContainer = connect(mapStateToProps)(Cumulative);
-
-export default CumulativeContainer;
+export default Cumulative;
 
 
 
