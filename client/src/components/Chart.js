@@ -20,7 +20,12 @@ class Chart extends Component {
 								  }
 								]
 					}}
-			  options={{ legend: { display: false } }}  /> 
+			  options={{ 
+					maintainAspectRatio: false,
+					legend: { display: false }
+			  }} 
+			height={400}
+			  /> 
 			  
       </div>
     )

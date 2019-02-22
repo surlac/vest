@@ -9,7 +9,7 @@ class Example extends Component {
     super(props);
     this.state = {
       startDate: new Date(2018,4,10),
-	  endDate: new Date(2019,0,28)
+	  endDate: new Date()
     };
     this.handleChangeStart = this.handleChangeStart.bind(this);
 	this.handleChangeEnd = this.handleChangeEnd.bind(this);
